@@ -4,14 +4,7 @@ public class Map
 
 		public static void main(String[] args)
 			{
-				jamaaTownship();
-				appondale();
-				kimbaraOutback();
-				mtShiveer();
-				coralCanyons();
-				crystalSands();
-				serapiaForest();
-				templeOfZios();
+
 			}
 
 		public static void jamaaTownship()
