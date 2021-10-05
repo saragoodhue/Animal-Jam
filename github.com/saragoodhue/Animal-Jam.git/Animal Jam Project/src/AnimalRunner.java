@@ -18,7 +18,6 @@ public class AnimalRunner
 				player.add(new AnimalJam("Koala", "LadyBug", "Red"));
 				player.add(new AnimalJam("Panda", "Monkey", "White"));
 				player.add(new AnimalJam("Penguin", "Krill", "Yellow"));
-				//player.add(new AnimalJam("No", "No", "No"));
 
 				playerCharacter();
 				beginJourney();
@@ -77,6 +76,10 @@ public class AnimalRunner
 					{
 						experiencePoints += 50;
 						System.out.println("You defeated the phantom! You now have " + experiencePoints + " XP");
+						System.out.println("You can now continue on your journey! Choose your path again.");
+						
+						continueJourney();
+						
 					}
 					
 				
@@ -109,6 +112,7 @@ public class AnimalRunner
 							{
 								experiencePoints = experiencePoints + 10;
 								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
+								continueJourney();
 							}
 						
 					}
@@ -118,6 +122,25 @@ public class AnimalRunner
 					}
 				
 
+			}
+		
+		public static void continueJourney()
+			{
+				System.out.println("Would you like to turn 1. right or 2. left?");
+				Scanner chooseDirection = new Scanner(System.in);
+				int userDirection = chooseDirection.nextInt();
+				System.out.println();
+				
+				if(userDirection == randomMove)
+					{
+						fightPhantoms();
+					}
+				
+				else if(userDirection != randomMove)
+					{
+						experiencePoints = experiencePoints + 10;
+						System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
+					}
 			}
 
 	}
