@@ -1,14 +1,13 @@
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class AnimalRunner
 	{
-		static String randomMove;
 		static ArrayList<AnimalJam> player = new ArrayList<AnimalJam>();
 		static int experiencePoints = 0;
 		static int health = 100;
-
+		static int randomMove;
+		
 		public static void main(String[] args)
 			{
 				player.add(new AnimalJam("Seal", "Clownfish", "Pink"));
@@ -19,22 +18,18 @@ public class AnimalRunner
 				player.add(new AnimalJam("Koala", "LadyBug", "Red"));
 				player.add(new AnimalJam("Panda", "Monkey", "White"));
 				player.add(new AnimalJam("Penguin", "Krill", "Yellow"));
+				//player.add(new AnimalJam("No", "No", "No"));
 
 				playerCharacter();
 				beginJourney();
-				System.out.println("Test homework");
 
 			}
 
 		public static void playerCharacter()
-			{
-				Random playerCharacter = new Random();
-				Random playerPet = new Random();
-				Random playerColor = new Random();
-				int upperbound = 8;
-				int characterRandom = playerCharacter.nextInt(upperbound);
-				int petRandom = playerPet.nextInt(upperbound);
-				int colorRandom = playerColor.nextInt(upperbound);
+			{				
+				int characterRandom = (int) (Math.random()*7) + 1;			
+				int petRandom = (int) (Math.random()*7) + 1;
+				int colorRandom = (int) (Math.random()*7) + 1;
 
 				System.out.println("Welcome to Animal Jam! (revised version)");
 				System.out.println("You will be randomly assigned an avatar");
@@ -48,42 +43,44 @@ public class AnimalRunner
 		
 		public static void phantomAttack()
 			{
-				int phantomHealth = 100;
-			
-				Random phantomMove = new Random();
-				int max = 1;
-				int randomPhantom = phantomMove.nextInt(max);
-			
-				if(randomPhantom == 0)
-					{
-						randomMove = "Right";
-					}
-				else if(randomPhantom == 1)
-					{
-						randomMove = "Left";
-					}
+				randomMove = (int) (Math.random()*2) + 1;
 			}
 	
 		
 		public static void fightPhantoms()
 			{	
-				System.out.println("You've encountered a phantom! To continue, you will need to fight them");
-				System.out.println("You can attack the phantom from the right or the left, which way do you want to attack?");
-				Scanner fightMove = new Scanner(System.in);
-				String userAttack = fightMove.nextLine();
+				int phantomHealth = 100;
 				
-				if(!userAttack.equals(randomMove))
+				System.out.println("You've encountered a phantom! To continue, you will need to fight them");
+				System.out.println("You can attack the phantom from the 1. right or the 2. left, which way do you want to attack?");
+				
+				while(phantomHealth > 0)
 					{
-						System.out.println("The phantom dodged you, try again!");
+						Scanner fightMove = new Scanner(System.in);
+						int userAttack = fightMove.nextInt();
+						phantomAttack();
+
+						if(userAttack == randomMove)
+							{
+								System.out.println("You hit the phantom! You gain 10 XP, and the phantom loses 50 Health");
+								experiencePoints += 10;
+								phantomHealth -= 50;
+							}						
+						else if(userAttack != randomMove)
+							{
+								System.out.println("The phantom dodged you, try again!");
+							}
+
 					}
-				else if(userAttack.equals(randomMove))
+				
+				if(phantomHealth == 0)
 					{
-						System.out.println("You hit the phantom! You gain 10 XP");
+						experiencePoints += 50;
+						System.out.println("You defeated the phantom! You now have " + experiencePoints + " XP");
 					}
 					
 				
 			}
-		
 
 		public static void beginJourney()
 			{
@@ -96,17 +93,19 @@ public class AnimalRunner
 				
 				if (continueJourney.equals("Y"))
 					{
+						phantomAttack();
 						Map.jamaaTownship();
-						System.out.println("Would you like to turn right or left?");
+						System.out.println("Would you like to turn 1. right or 2. left?");
 						Scanner chooseDirection = new Scanner(System.in);
-						String userDirection = chooseDirection.nextLine();
+						int userDirection = chooseDirection.nextInt();
+						System.out.println();
 						
-						if(userDirection.equals("right"))
+						if(userDirection == randomMove)
 							{
 								fightPhantoms();
 							}
 						
-						else if(userDirection.equals("left"))
+						else if(userDirection != randomMove)
 							{
 								experiencePoints = experiencePoints + 10;
 								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
