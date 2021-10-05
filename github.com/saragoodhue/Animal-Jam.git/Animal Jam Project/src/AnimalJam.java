@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class AnimalJam
 	{
-
+		
 		private String character;
 		private String pets;
 		private String color;

@@ -22,6 +22,7 @@ public class AnimalRunner
 
 				playerCharacter();
 				beginJourney();
+				System.out.println("Test homework");
 
 			}
 
