@@ -7,6 +7,7 @@ public class AnimalRunner
 		static int experiencePoints = 0;
 		static int health = 100;
 		static int randomMove;
+		static int phantomHealth;
 		
 		public static void main(String[] args)
 			{
@@ -21,6 +22,7 @@ public class AnimalRunner
 
 				playerCharacter();
 				beginJourney();
+				//nextLevels();
 
 			}
 
@@ -44,11 +46,32 @@ public class AnimalRunner
 			{
 				randomMove = (int) (Math.random()*2) + 1;
 			}
-	
+		
+		public static void continueJourney()
+			{
+				System.out.println("Would you like to turn 1. right or 2. left?");
+				Scanner chooseDirection = new Scanner(System.in);
+				int userDirection = chooseDirection.nextInt();
+				System.out.println();
+				
+				if(userDirection == randomMove)
+					{
+						fightPhantoms();
+					}
+				
+				else if(userDirection != randomMove)
+					{
+						experiencePoints = experiencePoints + 10;
+						System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
+						
+						MoveLevels.nextLevels();
+						continueJourney();						
+					}
+			}
 		
 		public static void fightPhantoms()
 			{	
-				int phantomHealth = 100;
+				phantomHealth = 100;
 				
 				System.out.println("You've encountered a phantom! To continue, you will need to fight them");
 				System.out.println("You can attack the phantom from 1. the right or 2. the left, which way do you want to attack? (Enter 1 or 2)");
@@ -61,9 +84,10 @@ public class AnimalRunner
 
 						if(userAttack == randomMove)
 							{
-								System.out.println("You hit the phantom! You gain 10 XP, and the phantom loses 50 Health. He is still alive, so make another move!");
+								System.out.println("You hit the phantom! You gain 10 XP, and the phantom loses 50 Health. If he is still alive, make another move!");
 								experiencePoints += 10;
 								phantomHealth -= 50;
+								
 							}						
 						else if(userAttack != randomMove)
 							{
@@ -78,11 +102,10 @@ public class AnimalRunner
 						System.out.println("You defeated the phantom! You now have " + experiencePoints + " XP");
 						System.out.println("You can now continue on your journey! Choose your path again.");
 						
+						MoveLevels.nextLevels();
 						continueJourney();
 						
 					}
-					
-				
 			}
 
 		public static void beginJourney()
@@ -112,35 +135,17 @@ public class AnimalRunner
 							{
 								experiencePoints = experiencePoints + 10;
 								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
+								
 								continueJourney();
 							}
-						
 					}
 				else
 					{
 						System.out.println("Thanks for playing!");
 					}
-				
 
 			}
 		
-		public static void continueJourney()
-			{
-				System.out.println("Would you like to turn 1. right or 2. left?");
-				Scanner chooseDirection = new Scanner(System.in);
-				int userDirection = chooseDirection.nextInt();
-				System.out.println();
-				
-				if(userDirection == randomMove)
-					{
-						fightPhantoms();
-					}
-				
-				else if(userDirection != randomMove)
-					{
-						experiencePoints = experiencePoints + 10;
-						System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
-					}
-			}
+		
 
 	}
