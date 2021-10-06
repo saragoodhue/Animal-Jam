@@ -51,7 +51,7 @@ public class AnimalRunner
 				int phantomHealth = 100;
 				
 				System.out.println("You've encountered a phantom! To continue, you will need to fight them");
-				System.out.println("You can attack the phantom from the 1. right or the 2. left, which way do you want to attack?");
+				System.out.println("You can attack the phantom from 1. the right or 2. the left, which way do you want to attack? (Enter 1 or 2)");
 				
 				while(phantomHealth > 0)
 					{
@@ -61,7 +61,7 @@ public class AnimalRunner
 
 						if(userAttack == randomMove)
 							{
-								System.out.println("You hit the phantom! You gain 10 XP, and the phantom loses 50 Health");
+								System.out.println("You hit the phantom! You gain 10 XP, and the phantom loses 50 Health. He is still alive, so make another move!");
 								experiencePoints += 10;
 								phantomHealth -= 50;
 							}						
