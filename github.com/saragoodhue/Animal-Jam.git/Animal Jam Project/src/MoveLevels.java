@@ -8,12 +8,12 @@ public class MoveLevels
 			}
 		public static void nextLevels()
 			{
-				for(int i = 0; i <= 1; i++)
+				for(int i = 0; i < 1; i++)
 					{
 						if (AnimalRunner.experiencePoints >= 100 && AnimalRunner.experiencePoints < 200)
 							{
 								levelTwo();
-								i += 1;
+								i = i + 1;
 							}
 					}
 				
