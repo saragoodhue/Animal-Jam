@@ -8,43 +8,46 @@ public class AnimalRunner
 		static int health = 100;
 		static int randomMove;
 		static int phantomHealth;
+		static int characterRandom;
 		
 		public static void main(String[] args)
 			{
-				player.add(new AnimalJam("Seal", "Clownfish", "Pink"));
-				player.add(new AnimalJam("Wolf", "Bear Cub", "Blue"));
-				player.add(new AnimalJam("Rhino", "Pigeon", "Black"));
-				player.add(new AnimalJam("Bunny", "BumbleBee", "Purple"));
-				player.add(new AnimalJam("Tiger", "Wild Dog", "Orange"));
-				player.add(new AnimalJam("Koala", "LadyBug", "Red"));
-				player.add(new AnimalJam("Panda", "Monkey", "White"));
-				player.add(new AnimalJam("Penguin", "Krill", "Yellow"));
+				player.add(new AnimalJam("Seal", "Clownfish", "Pink", 1));
+				player.add(new AnimalJam("Wolf", "Bear Cub", "Blue", 1));
+				player.add(new AnimalJam("Rhino", "Pigeon", "Black", 1));
+				player.add(new AnimalJam("Bunny", "BumbleBee", "Purple", 1));
+				player.add(new AnimalJam("Tiger", "Wild Dog", "Orange", 1));
+				player.add(new AnimalJam("Koala", "LadyBug", "Red", 1));
+				player.add(new AnimalJam("Panda", "Monkey", "White", 1));
+				player.add(new AnimalJam("Penguin", "Krill", "Yellow", 1));
 
 				playerCharacter();
 				beginJourney();
-				//nextLevels();
 
 			}
 
 		public static void playerCharacter()
 			{				
-				int characterRandom = (int) (Math.random()*7) + 1;			
+				characterRandom = (int) (Math.random()*7) + 1;			
 				int petRandom = (int) (Math.random()*7) + 1;
 				int colorRandom = (int) (Math.random()*7) + 1;
 
 				System.out.println("Welcome to Animal Jam! (revised version)");
 				System.out.println("You will be randomly assigned an avatar");
 				System.out.println("You will be a " + player.get(characterRandom).getCharacter() + ", your pet is a "
-						+ player.get(petRandom).getPets() + ", and your color is "
-						+ player.get(colorRandom).getColor());
+						+ player.get(characterRandom).getPets() + ", and your color is "
+						+ player.get(characterRandom).getColor());
 
 				System.out.println();
+				
+				
 
 			}
 		
 		public static void phantomAttack()
 			{
 				randomMove = (int) (Math.random()*2) + 1;
+				checkForLevelUp();
 			}
 		
 		public static void continueJourney()
@@ -57,15 +60,26 @@ public class AnimalRunner
 				if(userDirection == randomMove)
 					{
 						fightPhantoms();
+						checkForLevelUp();
+						
 					}
 				
 				else if(userDirection != randomMove)
 					{
 						experiencePoints = experiencePoints + 10;
-						System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
+						checkForLevelUp();
+						System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints + " " + player.get(characterRandom).getLevel());
 						
-						MoveLevels.nextLevels();
 						continueJourney();						
+					}
+			}
+		public static void checkIfDead()
+			{
+				if(health == 0)
+					{
+						System.out.println("Sorry, you died! Do you want to play again?");
+						System.out.println();
+						beginJourney();
 					}
 			}
 		
@@ -91,7 +105,9 @@ public class AnimalRunner
 							}						
 						else if(userAttack != randomMove)
 							{
-								System.out.println("The phantom dodged you, try again!");
+								health = health - 10;
+								System.out.println("The phantom dodged you, try again! Your new health is " + health);								
+								checkIfDead();
 							}
 
 					}
@@ -99,10 +115,10 @@ public class AnimalRunner
 				if(phantomHealth == 0)
 					{
 						experiencePoints += 50;
-						System.out.println("You defeated the phantom! You now have " + experiencePoints + " XP");
+						checkForLevelUp();
+						System.out.println("You defeated the phantom! You now have " + experiencePoints + " XP" + " " + player.get(characterRandom).getLevel());
 						System.out.println("You can now continue on your journey! Choose your path again.");
 						
-						MoveLevels.nextLevels();
 						continueJourney();
 						
 					}
@@ -134,7 +150,7 @@ public class AnimalRunner
 						else if(userDirection != randomMove)
 							{
 								experiencePoints = experiencePoints + 10;
-								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints);
+								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints + " " + player.get(characterRandom).getLevel());
 								
 								continueJourney();
 							}
@@ -144,6 +160,77 @@ public class AnimalRunner
 						System.out.println("Thanks for playing!");
 					}
 
+			}
+		
+		public static void checkForLevelUp()
+			{
+				if (experiencePoints >= 100 && experiencePoints < 200)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 1)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(2);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 200 && experiencePoints < 300)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 2)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(3);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 300 && experiencePoints < 400)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 3)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(4);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 400 && experiencePoints < 500)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 4)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(5);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 500 && experiencePoints < 600)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 5)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(6);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 600 && experiencePoints < 700)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 6)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(7);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 700 && experiencePoints < 800)
+					{
+						if(AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 7)
+							{
+								AnimalRunner.player.get(AnimalRunner.characterRandom).setLevel(8);
+								MoveLevels.nextLevels();
+							}
+					}
+				
+				else if (experiencePoints >= 800)
+					{
+						System.out.println("You have beat all of the levels! Thanks for playing");
+					}
 			}
 		
 		

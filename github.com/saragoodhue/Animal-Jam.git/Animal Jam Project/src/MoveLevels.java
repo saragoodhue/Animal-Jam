@@ -8,97 +8,79 @@ public class MoveLevels
 			}
 		public static void nextLevels()
 			{
-				for(int i = 0; i < 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 100 && AnimalRunner.experiencePoints < 200)
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 2)
 							{
 								levelTwo();
-								i = i + 1;
 							}
-					}
+					
 				
-				for(int i = 0; i <= 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 200 && AnimalRunner.experiencePoints < 300)
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 3)
 							{
 								levelThree();
-								i += 1;
 							}
-					}
-				
-				for(int i = 0; i <= 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 300 && AnimalRunner.experiencePoints < 400)
+
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 4)
 							{
 								levelFour();
-								i += 1;
 							}
-					}
-
-				for(int i = 0; i <= 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 400 && AnimalRunner.experiencePoints < 500)
+					
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 5)
 							{
 								levelFive();
-								i += 1;
 							}
-					}
-
-				for(int i = 0; i <= 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 500 && AnimalRunner.experiencePoints < 600)
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 6)
 							{
 								levelSix();
-								i += 1;
 							}
-					}
 				
-				for(int i = 0; i <= 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 600 && AnimalRunner.experiencePoints < 700)
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 7)
 							{
 								levelSeven();
-								i += 1;
 							}
-					}
-				
-				for(int i = 0; i <= 1; i++)
-					{
-						if (AnimalRunner.experiencePoints >= 700 && AnimalRunner.experiencePoints < 800)
+
+						if (AnimalRunner.player.get(AnimalRunner.characterRandom).getLevel() == 8)
 							{
 								levelEight();
-								i += 1;
 							}
 					}
-			}
+			
 		
 		public static void levelTwo()
 			{
 				Map.appondale();
+				AnimalRunner.phantomHealth = 150;
+				AnimalRunner.health = 100;
 			}	
 		public static void levelThree()
 			{
 				Map.kimbaraOutback();
+				AnimalRunner.phantomHealth = 200;
+				AnimalRunner.health = 100;
 			}
 		public static void levelFour()
 			{
 				Map.mtShiveer();
+				AnimalRunner.health = 100;
 			}
 		public static void levelFive()
 			{
 				Map.coralCanyons();
+				AnimalRunner.health = 100;
 			}
 		public static void levelSix()
 			{
 				Map.crystalSands();
+				AnimalRunner.health = 100;
 			}
 		public static void levelSeven()
 			{
 				Map.serapiaForest();
+				AnimalRunner.health = 100;
 			}
 		public static void levelEight()
 			{
 				Map.templeOfZios();
+				AnimalRunner.health = 100;
 			}
 
 	}
