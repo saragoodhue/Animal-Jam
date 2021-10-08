@@ -6,13 +6,17 @@ public class AnimalJam
 		private String pets;
 		private String color;
 		private int level;
+		private int health;
+		private int phantomHealth;
 		
-		public AnimalJam(String c, String p, String co, int l)
+		public AnimalJam(String c, String p, String co, int l, int h, int ph)
 			{
 				character = c;
 				pets = p;
 				color = co;
 				level = l;
+				health = h;
+				phantomHealth = ph;
 			}
 		
 		public String getCharacter()
@@ -51,6 +55,24 @@ public class AnimalJam
 			{
 				this.level = level;
 			}
+
+		public int getHealth() {
+			return health;
+		}
+
+		public void setHealth(int health) {
+			this.health = health;
+		}
+
+		public int getPhantomHealth() {
+			return phantomHealth;
+		}
+
+		public void setPhantomHealth(int phantomHealth) {
+			this.phantomHealth = phantomHealth;
+		}
+		
+		
 
 		
 		
