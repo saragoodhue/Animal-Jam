@@ -149,7 +149,7 @@ public class AnimalRunner
 						else if(userDirection != randomMove)
 							{
 								experiencePoints = experiencePoints + 10;
-								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints + " " + player.get(characterRandom).getLevel());
+								System.out.println("You chose a safe path! Continue on your journey. Your new XP is " + experiencePoints + " and you are on Level " + player.get(characterRandom).getLevel());
 								
 								continueJourney();
 							}
