@@ -20,13 +20,49 @@ public class AnimalRunner
 				player.add(new AnimalJam("Penguin", "Krill", "Yellow", 1, 100, 100));
 
 				playerCharacter();
+				playerAvatar();
 				beginJourney();
 
 			}
+		public static void playerAvatar()
+		{
+			if(player.get(characterRandom).getCharacter().equals("Seal"))
+					{
+						AnimalArt.animalSeal();
+					}
+			else if(player.get(characterRandom).getCharacter().equals("Wolf"))
+			{
+				AnimalArt.animalWolf();
+			}
+			else if(player.get(characterRandom).getCharacter().equals("Rhino"))
+			{
+				AnimalArt.animalRhino();
+			}		
+			else if(player.get(characterRandom).getCharacter().equals("Bunny"))
+			{
+				AnimalArt.animalBunny();
+			}
+			else if(player.get(characterRandom).getCharacter().equals("Tiger"))
+			{
+				AnimalArt.animalTiger();
+			}
+			else if(player.get(characterRandom).getCharacter().equals("Koala"))
+			{
+				AnimalArt.animalKoala();
+			}
+			else if(player.get(characterRandom).getCharacter().equals("Panda"))
+			{
+				AnimalArt.animalPanda();
+			}
+			else if(player.get(characterRandom).getCharacter().equals("Penguin"))
+			{
+				AnimalArt.animalPenguin();
+			}
+		}
 
 		public static void playerCharacter()
 			{				
-				characterRandom = (int) (Math.random()*7) + 1;			
+				characterRandom = (int) (Math.random()*7);			
 				
 				System.out.println("Welcome to Animal Jam! (revised version)");
 				System.out.println("You will be randomly assigned an avatar");
@@ -85,6 +121,7 @@ public class AnimalRunner
 				PhantomLevel.changePhantomHealth();
 				
 				System.out.println("You've encountered a phantom! To continue, you will need to fight them");
+				AnimalArt.phantom();
 				System.out.println("You can attack the phantom from 1. the right or 2. the left, which way do you want to attack? (Enter 1 or 2)");
 				
 				while(player.get(characterRandom).getPhantomHealth() > 0)
